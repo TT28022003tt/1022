@@ -6,43 +6,35 @@ import Image from "next/image";
 const articles = [
   {
     title: "Khóa học Thạc sĩ Nghệ thuật Chuyên nghiệp",
-    author: "Michael Palmisano",
-    image: "/image1.jpg",
+    image: "/banner/image1.jpg",
   },
   {
     title: "Khóa học Thạc sĩ Nghệ thuật Chuyên nghiệp",
-    author: "William Carnahan",
-    image: "/image2.jpg",
+    image: "/banner/image2.jpg",
   },
   {
     title: "Điện và Từ Tính",
-    author: "Stephane Maarak",
-    image: "/image3.jpg",
+    image: "/banner/image3.jpg",
   },
   {
     title: "Hóa học trường học phiên bản beta",
-    author: "Rajeev Rawal",
-    image: "/image4.jpg",
+    image: "/banner/image4.jpg",
   },
   {
     title: "Chủ nghĩa Hiện đại trong Nghệ thuật Phương Đông",
-    author: "The Museum of Modern Art",
-    image: "/image1.jpg",
+    image: "/banner/image5.jpg",
   },
   {
     title: "Bố cục trong Nghệ thuật Thị giác",
-    author: "Yan Cao Hong",
-    image: "/image2.jpg",
+    image: "/banner/image6.jpg",
   },
   {
     title: "Vật lý trung học",
-    author: "Prerak Gandhi",
-    image: "/image3.jpg",
+    image: "/banner/image1.jpg",
   },
   {
     title: "Chỉnh màu với Da Vinci",
-    author: "Matthew Falconer",
-    image: "/image4.jpg",
+    image: "/banner/image2.jpg",
   },
 ];
 
@@ -71,7 +63,6 @@ const NewsSection = () => {
             <a href="#" className="font-semibold text-black hover:text-blue-500 hover:underline">
               {article.title}
             </a>
-            <p className="text-gray-500 text-sm">{article.author}</p>
           </div>
         ))}
       </div>

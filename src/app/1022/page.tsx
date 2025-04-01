@@ -3,7 +3,7 @@ import Slogan from "../components/Slogan";
 
 const Page1022 = () => {
   return (
-	<div className='w-[70%] flex flex-col justify-center items-center'>
+	<div className='w-[85%] md:w-[70%] flex flex-col justify-center items-center'>
 		<Slogan/>
 		<NewsSection/>
 	</div>

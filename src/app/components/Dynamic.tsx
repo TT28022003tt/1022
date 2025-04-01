@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import DynLink from "./DynLink";
-import DynSlogan from "./DynSlogan";
+import DynSlogan from "./SloganSection";
 import { useEffect, useState } from "react";
 
 const Dynamic = () => {
@@ -13,7 +13,7 @@ const Dynamic = () => {
 	}, [pathname]);
 	return (
 		<div className=''>
-			{change ? <DynLink /> : <DynSlogan />}
+			{change ? <DynLink /> : ""}
 		</div>
 	);
 };
