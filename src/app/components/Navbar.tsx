@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 
 
 const menuItems = [
-  { name: "GIỚI THIỆU", link: "/gioi-thieu" },
+  { name: "GIỚI THIỆU", link: "/about" },
   { name: "DỊCH VỤ CÔNG TRỰC TUYẾN", link: "/dich-vu" },
   { name: "BỘ THỦ TỤC HÀNH CHÍNH", link: "/thu-tuc" },
   { name: "VĂN BẢN PHÁP QUY", link: "/van-ban" },
@@ -38,7 +38,7 @@ const Navbar = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className="bg-[#10203F] text-white md:w-[90%] w-full py-2 px-4 flex items-center justify-between relative flex-wrap">
+    <nav className="bg-[#10203F] text-white md:w-[90%] w-full py-2 px-4 flex items-center justify-center sm:justify-between relative flex-wrap">
       {/* LOGO */}
       <div className="flex items-center gap-2">
         <Link href="/" className="flex flex-col items-center gap-2">
@@ -54,17 +54,17 @@ const Navbar = () => {
       </div>
   
       {/* SEARCH BAR & MENU BUTTON */}
-      <div className="relative flex items-center flex-wrap gap-4 sm:flex-nowrap">
+      <div className="relative flex items-center flex-wrap gap-4 sm:flex-nowrap pt-4 sm:pt-0">
         <p className="uppercase text-sm font-bold mr-2 text-[#00b3ff94] text-right hidden md:block">
           Search<br />Anything
         </p>
-        <div className="relative w-full sm:w-64">
-          <input type="text" placeholder="Search..." className="input input-bordered rounded-full w-full pr-10 text-black" />
-          <button className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-500">
+        <div className="relative w-60 sm:w-64 ">
+          <input type="text" placeholder="Search..." className="input input-bordered rounded-full w-full pr-10 text-black " />
+          <button className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-500 ">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>
-        <div className="flex items-center space-x-4 md:pl-4 pr-4">
+        <div className="flex items-center space-x-4 md:pl-4 sm:pr-4">
           <FontAwesomeIcon icon={faUser} className="text-white text-2xl cursor-pointer" />
           {!hideHamburger && (
             <button

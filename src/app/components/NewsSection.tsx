@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 
 const articles = [
@@ -39,34 +40,49 @@ const articles = [
 ];
 
 const NewsSection = () => {
+  const [visibleArticles, setVisibleArticles] = useState(articles);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setVisibleArticles(articles.slice(0, 4)); // Chỉ hiển thị 4 bài viết ở màn nhỏ
+      } else {
+        setVisibleArticles(articles);
+      }
+    };
+
+    handleResize(); // Chạy ngay khi render
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [articles]);
+
   return (
     <div className="p-6">
       {/* Tiêu đề */}
       <div className="flex justify-between items-center">
-        <h2 className="custom-outline-text">TIN TỨC MỚI</h2>
+        <h2 className="custom-outline-text ">TIN TỨC MỚI</h2>
         <a href="#" className="text-blue-500 hover:underline">See all</a>
       </div>
 
       {/* Danh sách bài viết */}
-      <div className="grid grid-cols-4 gap-6 mt-6">
-        {articles.map((article, index) => (
-          <div key={index} className="space-y-2">
-            <div className="w-full h-40 relative">
-              <Image
-                src={article.image}
-                alt={article.title}
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-            </div>
-            <a href="#" className="font-semibold text-black hover:text-blue-500 hover:underline">
-              {article.title}
-            </a>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+      {visibleArticles.map((article, index) => (
+        <div key={index} className="space-y-2">
+          <div className="w-full h-40 relative">
+            <Image
+              src={article.image}
+              alt={article.title}
+              layout="fill"
+              objectFit="cover"
+              className="rounded-lg"
+            />
           </div>
-        ))}
-      </div>
-
+          <a href="#" className="font-semibold text-black hover:text-blue-500 hover:underline">
+            {article.title}
+          </a>
+        </div>
+      ))}
+    </div>
 
       {/* Phân trang */}
       <div className="flex items-center justify-center gap-2 mt-6">

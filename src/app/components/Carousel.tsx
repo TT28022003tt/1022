@@ -18,11 +18,11 @@ const images = [
 
 const Carousel = () => {
   const [current, setCurrent] = useState(0);
-  const [windowWidth, setWindowWidth] = useState(1024); // Mặc định là desktop
+  const [windowWidth, setWindowWidth] = useState(1024);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const startXRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Lắng nghe thay đổi kích thước màn hình
     const handleResize = () => setWindowWidth(window.innerWidth);
     handleResize();
     window.addEventListener("resize", handleResize);
@@ -30,7 +30,6 @@ const Carousel = () => {
   }, []);
 
   useEffect(() => {
-    // Tự động chuyển slide
     intervalRef.current = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
     }, 3000);
@@ -39,7 +38,7 @@ const Carousel = () => {
         clearInterval(intervalRef.current);
       }
     };
-    
+
   }, []);
 
   const prevSlide = () => {
@@ -49,23 +48,47 @@ const Carousel = () => {
   const nextSlide = () => {
     setCurrent((prev) => (prev + 1) % images.length);
   };
+  // Xử lý sự kiện cảm ứng
+  const handleTouchStart = (e: React.TouchEvent) => {
+    startXRef.current = e.touches[0].clientX;
+  };
 
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (startXRef.current !== null) {
+      const currentX = e.touches[0].clientX;
+      const diffX = startXRef.current - currentX;
+
+      // Nếu kéo qua trái
+      if (diffX > 50) {
+        nextSlide();
+        startXRef.current = null; // Reset
+      }
+      // Nếu kéo qua phải
+      else if (diffX < -50) {
+        prevSlide();
+        startXRef.current = null; // Reset
+      }
+    }
+  };
   return (
-    <div className="relative h-[450px] flex justify-center items-center gap-8 p-4 overflow-hidden w-full bg-[linear-gradient(to_bottom,#10203F_50%,white_50%)]">
+    <div className="relative h-[450px] flex justify-center items-center gap-8 p-4 overflow-hidden w-full bg-[linear-gradient(to_bottom,#10203F_50%,white_50%)]"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+    >
       {/* Social Media Icons */}
-      <div className="absolute top-3 transform translate-x-85 flex gap-4 text-white text-2xl z-10">
+      <div className="absolute top-3 right-4 md:right-1/4 flex md:flex-row gap-4 text-white text-2xl z-10">
         <FontAwesomeIcon icon={faFacebook} className="cursor-pointer hover:text-blue-500" />
         <FontAwesomeIcon icon={faInstagram} className="cursor-pointer hover:text-pink-500" />
         <FontAwesomeIcon icon={faTwitter} className="cursor-pointer hover:text-blue-400" />
       </div>
 
       {/* Navigation Buttons */}
-      <button onClick={prevSlide} className="absolute left-4 text-5xl text-[#3498db] p-2 z-10">
+      <button onClick={prevSlide} className="absolute left-4 text-5xl text-[#3498db] p-2 z-10 hidden sm:block ">
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
 
       {/* Carousel Images */}
-      <div className="flex items-center justify-center w-full relative">
+      <div className="flex items-center justify-center w-full relative ">
         <AnimatePresence mode="popLayout">
           {images.map((img, index) => {
             const position = index - current;
@@ -96,7 +119,7 @@ const Carousel = () => {
         </AnimatePresence>
       </div>
 
-      <button onClick={nextSlide} className="absolute right-4 text-5xl text-[#3498db] p-2 z-10">
+      <button onClick={nextSlide} className="absolute right-4 text-5xl text-[#3498db] p-2 z-10 hidden sm:block">
         <FontAwesomeIcon icon={faChevronRight} />
       </button>
     </div>

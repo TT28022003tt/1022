@@ -8,12 +8,12 @@ const Footer = () => {
 			<div className="max-w-6xl mx-auto flex flex-col ">
 				{/* Thông tin bên trái */}
 				<div className="pb-2">
-					<p className="font-bold uppercase text-center text-xl md:text-2xl">
+					<p className="font-bold uppercase text-center text-sm sm:text-xl md:text-2xl">
 						Bản quyền thuộc Trung tâm Thông tin và Giám sát, Điều hành Thông minh Đà Nẵng
 					</p>
 				</div>
-				<div className="flex justify-between items-center">
-					<div className="space-y-2 ">
+				<div className="flex justify-between items-center ">
+					<div className="space-y-2 text-xs sm:text-lg">
 						<p className="">📜 Giấy phép: số 167/GGP-STTTT do Sở Thông tin và Truyền thông cấp ngày 03 tháng 03 năm 2017</p>
 						<p>🏛️ Địa chỉ: Tầng 11 - Công viên phần mềm, số 02 Quang Trung, thành phố Đà Nẵng</p>
 						<p>👤 Người chịu trách nhiệm: <strong>Nguyễn Văn Quốc - Giám đốc Trung tâm</strong></p>
