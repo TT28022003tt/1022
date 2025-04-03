@@ -1,3 +1,5 @@
+"use client"
+
 const Slogan = () => {
 	return (
 		<div className="text-center ">

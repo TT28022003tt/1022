@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 import DynLink from "./DynLink";
-import DynSlogan from "./SloganSection";
 import { useEffect, useState } from "react";
 
 const Dynamic = () => {

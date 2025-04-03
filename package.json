@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "@fontsource/rubik": "^5.2.5",
@@ -17,6 +18,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.484.0",
+    "mock-window": "^1.0.2",
     "next": "^15.2.3",
     "postcss": "^8.5.3",
     "react": "^19.0.0",

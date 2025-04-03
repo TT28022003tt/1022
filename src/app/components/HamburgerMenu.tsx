@@ -1,7 +1,12 @@
-"use client";
+"use client"
 
 import { motion } from "framer-motion";
 import { X } from "lucide-react";
+import dynamic from "next/dynamic";
+
+const HamburgerMenus = dynamic(() => import('./HamburgerMenu'), { 
+	ssr: false // Tắt Server Side Rendering cho component này
+  });
 
 const menuItems = [
 	"GIỚI THIỆU",
@@ -25,6 +30,7 @@ const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose }) => {
 			exit={{ opacity: 0, x: -100 }}
 			className="fixed left-0 top-0 w-64 h-full bg-white shadow-lg p-4 z-50"
 		>
+			
 			<button onClick={onClose} className="absolute top-4 right-4 text-gray-800">
 				<X size={24} />
 			</button>

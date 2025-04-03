@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { faBars, faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,6 +7,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+
 
 const menuItems = [
   { name: "GIỚI THIỆU", link: "/gioi-thieu" },
@@ -54,7 +55,7 @@ const Navbar = () => {
   
       {/* SEARCH BAR & MENU BUTTON */}
       <div className="relative flex items-center flex-wrap gap-4 sm:flex-nowrap">
-        <p className="uppercase text-sm font-bold mr-2 text-[#00b3ff94] text-right">
+        <p className="uppercase text-sm font-bold mr-2 text-[#00b3ff94] text-right hidden md:block">
           Search<br />Anything
         </p>
         <div className="relative w-full sm:w-64">
