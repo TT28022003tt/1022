@@ -8,7 +8,7 @@ const Dynamic = () => {
 	const pathname = usePathname();
 	const [change, setChange] = useState(false);
 	useEffect(() => {
-		setChange(pathname.endsWith("/1022"));
+		setChange(pathname.endsWith("/"));
 	}, [pathname]);
 	return (
 		<div className=''>

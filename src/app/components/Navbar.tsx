@@ -19,7 +19,7 @@ const menuItems = [
 
 const Navbar = () => {
   const pathname = usePathname();
-  const hideHamburger = pathname.endsWith("/1022");
+  const hideHamburger = pathname.endsWith("/");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Đóng menu khi click ra ngoài
