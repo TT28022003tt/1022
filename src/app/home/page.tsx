@@ -1,16 +1,17 @@
 import AllSection from "../components/AllSection";
 import BannerHome from "../components/BannerHome";
 import Carouselmini from "../components/Carouselmini";
+import Extra from "../components/Extra";
 import InfoUneed from "../components/InfoUneed";
 import SloganSection from "../components/SloganSection";
 
 const Page1022 = () => {
 	return (
 		<div className="flex flex-col justify-center items-center ">
-			<div className="z-20">
+			<div className="z-10 hidden md:block">
 				<SloganSection />
 			</div>
-			<div className="z-10">
+			<div className="z-20">
 				<Carouselmini />
 			</div>
 			<div className="z-20">
@@ -19,11 +20,10 @@ const Page1022 = () => {
 				<AllSection title="MỖI NGÀY MỘT THÔNG TIN" />
 				<AllSection title="THÔNG TIN DOANH NGHIỆP" />
 			</div>
-			<div className="z-20">
-				<InfoUneed/>
-			</div>
-			<div className="z-20">
-				<BannerHome/>
+			<div className="z-20 flex flex-col justify-center items-center">
+				<InfoUneed />
+				<BannerHome />
+				<Extra />
 			</div>
 		</div>
 

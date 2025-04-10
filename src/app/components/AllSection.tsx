@@ -39,7 +39,6 @@ const AllSection: React.FC<NewsSectionProps> = ({ title }) => {
 				</h2>
 			</div>
 
-			{/* Danh sách bài viết dạng slider */}
 			<div className="relative px-6">
 				{/* Nút trái */}
 				<button
