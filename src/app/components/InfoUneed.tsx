@@ -15,14 +15,14 @@ const InfoUneed = () => {
 					</h2>
 				</div>
 				<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 text-center px-4">
-					<CardPage icon="/Vector/Vector1.png" title="Hệ Thống Danh Bạ"/>
-					<CardPage icon="/Vector/Vector2.png" title="Số Liệu Kinh Tế Xã Hội"/>
-					<CardPage icon="/Vector/Vector3.png" title="Lịch Tạm Ngừng Cung Cấp Điện"/>
-					<CardPage icon="/Vector/Vector4.png" title="Lịch Tạm Ngừng Cung Cấp Nước"/>
-					<CardPage icon="/Vector/Vector5.png" title="Lịch Truyền Hình"/>
-					<CardPage icon="/Vector/Vector6.png" title="Lịch Tàu Xe"/>
-					<CardPage icon="/Vector/Vector7.png" title="Số Điện Thoại Khẩn Cấp"/>
-					<CardPage icon="/Vector/Vector8.png" title="Lịch Sự kiện"/>
+					<CardPage icon="/vector/Vector1.png" title="Hệ Thống Danh Bạ"/>
+					<CardPage icon="/vector/Vector2.png" title="Số Liệu Kinh Tế Xã Hội"/>
+					<CardPage icon="/vector/Vector3.png" title="Lịch Tạm Ngừng Cung Cấp Điện"/>
+					<CardPage icon="/vector/Vector4.png" title="Lịch Tạm Ngừng Cung Cấp Nước"/>
+					<CardPage icon="/vector/Vector5.png" title="Lịch Truyền Hình"/>
+					<CardPage icon="/vector/Vector6.png" title="Lịch Tàu Xe"/>
+					<CardPage icon="/vector/Vector7.png" title="Số Điện Thoại Khẩn Cấp"/>
+					<CardPage icon="/vector/Vector8.png" title="Lịch Sự kiện"/>
 				</div>
 			</div>
 
