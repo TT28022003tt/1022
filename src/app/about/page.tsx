@@ -150,7 +150,7 @@ const sections = [
 
 const AboutPage = () => {
   const [currentSection, setCurrentSection] = useState("intro");
-  const [sliderRef] = useKeenSlider<HTMLDivElement>({
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     loop: true,
     slides: { perView: 3, spacing: 15 },
     breakpoints: {
@@ -161,12 +161,12 @@ const AboutPage = () => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (sliderRef.current) {
-        sliderRef.current.next();
-      }
+      instanceRef.current?.next();
     }, 3000);
+  
     return () => clearInterval(interval);
-  }, [sliderRef]);
+  }, [instanceRef]);
+  
 
   const selectedSection = sections.find((section) => section.id === currentSection);
 
