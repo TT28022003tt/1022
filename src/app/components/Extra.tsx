@@ -10,7 +10,7 @@ const Extra = () => {
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-10 justify-center">
         <div className="bg-white rounded-lg shadow-md p-6 sm:p-8">
           <TraCuuHoSo />
-          <div className="mt-10">
+          <div className="mt-11">
             <SelectDropdown />
           </div>
         </div>
