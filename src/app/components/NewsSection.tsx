@@ -1,102 +1,93 @@
-"use client"
+"use client";
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { useEffect, useState } from "react";
-
-
-const articles = [
-  {
-    title: "Khóa học Thạc sĩ Nghệ thuật Chuyên nghiệp",
-    image: "/banner/image1.jpg",
-  },
-  {
-    title: "Khóa học Thạc sĩ Nghệ thuật Chuyên nghiệp",
-    image: "/banner/image2.jpg",
-  },
-  {
-    title: "Điện và Từ Tính",
-    image: "/banner/image3.jpg",
-  },
-  {
-    title: "Hóa học trường học phiên bản beta",
-    image: "/banner/image4.jpg",
-  },
-  {
-    title: "Chủ nghĩa Hiện đại trong Nghệ thuật Phương Đông",
-    image: "/banner/image5.jpg",
-  },
-  {
-    title: "Bố cục trong Nghệ thuật Thị giác",
-    image: "/banner/image6.jpg",
-  },
-  {
-    title: "Vật lý trung học",
-    image: "/banner/image1.jpg",
-  },
-  {
-    title: "Chỉnh màu với Da Vinci",
-    image: "/banner/image2.jpg",
-  },
-];
+import { motion } from "framer-motion";
+import { articles } from "../constants/articles";
 
 const NewsSection = () => {
-  const [visibleArticles, setVisibleArticles] = useState(articles);
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = typeof window !== "undefined" && window.innerWidth < 640 ? 4 : 8;
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setVisibleArticles(articles.slice(0, 4)); // Chỉ hiển thị 4 bài viết ở màn nhỏ
-      } else {
-        setVisibleArticles(articles);
-      }
-    };
+  const visibleArticles = articles.slice(
+    (currentPage - 1) * articlesPerPage,
+    currentPage * articlesPerPage
+  );
 
-    handleResize(); // Chạy ngay khi render
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [articles]);
+  const handlePageChange = (page: number) => {
+    if (page >= 1 && page <= totalPages) setCurrentPage(page);
+  };
 
   return (
     <div className="p-6">
       {/* Tiêu đề */}
       <div className="flex justify-between items-center">
-        <h2 className="custom-outline-text ">TIN TỨC MỚI</h2>
+        <h2 className="custom-outline-text">TIN TỨC MỚI</h2>
         <a href="#" className="text-blue-500 hover:underline">See all</a>
       </div>
 
       {/* Danh sách bài viết */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-      {visibleArticles.map((article, index) => (
-        <div key={index} className="space-y-2">
-          <div className="w-full h-40 relative">
-            <Image
-              src={article.image}
-              alt={article.title}
-              layout="fill"
-              objectFit="cover"
-              className="rounded-lg"
-            />
-          </div>
-          <a href="#" className="font-semibold text-black hover:text-blue-500 hover:underline">
-            {article.title}
-          </a>
-        </div>
-      ))}
-    </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mt-6">
+        {visibleArticles.map((article, index) => (
+          <motion.div
+            key={index}
+            className="space-y-2 cursor-pointer"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <div className="w-full aspect-[4/3] relative overflow-hidden rounded-lg shadow-sm">
+              <Image
+                src={article.image}
+                alt={article.title}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+                loading="lazy"
+              />
+            </div>
+            <a href="#" className="font-semibold text-black hover:text-blue-500 hover:underline text-sm sm:text-base">
+              {article.title}
+            </a>
+          </motion.div>
+        ))}
+      </div>
 
       {/* Phân trang */}
-      <div className="flex items-center justify-center gap-2 mt-6">
-        <button className="p-2 text-gray-500 hover:text-black">&larr;</button>
-        {[1, 2, 3, 4, 5, 6].map((num) => (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="text-center py-6 sm:py-8 md:py-10"
+      >
+        <div className="flex items-center justify-center gap-2 mt-6">
           <button
-            key={num}
-            className={`w-6 h-6 flex items-center justify-center rounded ${num === 1 ? "bg-blue-500 text-white" : "text-gray-500"}`}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="p-2 text-gray-500 hover:text-black disabled:opacity-50"
           >
-            {num}
+            ←
           </button>
-        ))}
-        <button className="p-2 text-gray-500 hover:text-black">&rarr;</button>
-      </div>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+            <button
+              key={num}
+              onClick={() => handlePageChange(num)}
+              className={`w-6 h-6 flex items-center justify-center rounded ${num === currentPage ? "bg-blue-500 text-white" : "text-gray-500"
+                }`}
+            >
+              {num}
+            </button>
+          ))}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="p-2 text-gray-500 hover:text-black disabled:opacity-50"
+          >
+            →
+          </button>
+        </div>
+      </motion.div>
     </div>
   );
 };

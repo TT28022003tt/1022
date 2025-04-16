@@ -1,6 +1,6 @@
 "use client"
 
-import Image from "next/image"
+import Image from "next/legacy/image"
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 import { useEffect, useRef } from "react"
@@ -37,7 +37,7 @@ const BannerHome = () => {
 							<Image
 								src={`/bannerHome/${filename}`}
 								alt={`Slide ${index + 1}`}
-								fill
+								layout="fill"
 								className="object-fill w-full h-full"
 							/>
 						</div>

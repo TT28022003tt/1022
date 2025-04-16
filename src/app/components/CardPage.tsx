@@ -2,7 +2,7 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconDefinition } from "@fortawesome/fontawesome-common-types";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface CardProps {
   icon: string;

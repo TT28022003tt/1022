@@ -1,43 +1,85 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 
 const TraCuuHoSo = () => {
   const [maHoSo, setMaHoSo] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Xử lý tra cứu ở đây
-    alert(`Mã hồ sơ: ${maHoSo}`);
+    setError("");
+    setIsLoading(true);
+
+    // Validate mã hồ sơ (15 số)
+    if (!/^\d{15}$/.test(maHoSo)) {
+      setError("Mã hồ sơ phải gồm 15 số.");
+      setIsLoading(false);
+      return;
+    }
+
+    // Giả lập gọi API (thay thế bằng API thực nếu có)
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Mock API delay
+      alert(`Tra cứu thành công cho mã hồ sơ: ${maHoSo}`);
+      setMaHoSo("");
+    } catch {
+      setError("Đã có lỗi xảy ra. Vui lòng thử lại.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center   px-4">
+    <div className="flex flex-col items-center justify-center w-full">
       {/* Tiêu đề */}
-      <h1 className="text-4xl font-extrabold text-transparent bg-clip-text  stroke-blue-500 text-stroke text-center mb-6 uppercase">
-        <span className="custom-outline-text drop-shadow-md">TRA CỨU HỒ SƠ</span>
-      </h1>
+      <motion.h1
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-2xl sm:text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#003294] to-[#00B3FF] uppercase tracking-wide mb-6"
+      >
+        TRA CỨU HỒ SƠ
+      </motion.h1>
 
       {/* Form tra cứu */}
-      <form onSubmit={handleSubmit} className="w-full max-w-sm space-y-4">
-        <label className="block text-sm font-medium text-gray-700">
-          Mã hồ sơ <span className="text-red-500">*</span>
-        </label>
-        <input
-          type="text"
-          maxLength={15}
-          placeholder="Nhập mã biên nhận gồm 15 số"
-          value={maHoSo}
-          onChange={(e) => setMaHoSo(e.target.value)}
-          className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-        />
+      <form onSubmit={handleSubmit} className="w-full space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Mã hồ sơ <span className="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            maxLength={15}
+            placeholder="Nhập mã biên nhận gồm 15 số"
+            value={maHoSo}
+            onChange={(e) => {
+              setMaHoSo(e.target.value.replace(/\D/g, "")); // Chỉ cho phép số
+              setError("");
+            }}
+            className={`w-full px-4 py-2 border ${
+              error ? "border-red-500" : "border-gray-300"
+            } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B3FF] transition-all`}
+            disabled={isLoading}
+          />
+          {error && (
+            <p className="mt-1 text-sm text-red-500">{error}</p>
+          )}
+        </div>
 
-        <button
+        <motion.button
           type="submit"
-          className="w-full py-2 font-semibold text-white bg-gradient-to-r from-blue-400 to-blue-500 rounded hover:from-blue-500 hover:to-blue-600 transition"
+          disabled={isLoading}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className={`w-full py-2 px-4 font-semibold text-white bg-gradient-to-r from-[#003294] to-[#00B3FF] rounded-lg hover:from-[#00B3FF] hover:to-[#003294] transition-all ${
+            isLoading ? "opacity-50 cursor-not-allowed" : ""
+          }`}
         >
-          TRA CỨU
-        </button>
+          {isLoading ? "Đang tra cứu..." : "TRA CỨU"}
+        </motion.button>
       </form>
     </div>
   );

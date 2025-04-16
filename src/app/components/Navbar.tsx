@@ -2,7 +2,7 @@
 
 import { faBars, faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -16,13 +16,9 @@ const menuItems = [
   { name: "VĂN BẢN PHÁP QUY", link: "/van-ban" },
   { name: "HƯỚNG DẪN SỬ DỤNG", link: "/huong-dan" },
 ];
-
-const Navbar = () => {
-  const pathname = usePathname();
-  const hideHamburger = pathname.endsWith("/");
+const useHamburgerMenu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Đóng menu khi click ra ngoài
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (!(event.target as HTMLElement).closest("#hamburger-menu")) {
@@ -31,18 +27,30 @@ const Navbar = () => {
     };
     if (isMenuOpen) {
       document.addEventListener("click", handleClickOutside);
-    } else {
-      document.removeEventListener("click", handleClickOutside);
     }
     return () => document.removeEventListener("click", handleClickOutside);
   }, [isMenuOpen]);
+
+  return { isMenuOpen, setIsMenuOpen };
+};
+const Navbar = () => {
+  const pathname = usePathname();
+  const hideHamburger = pathname.endsWith("/");
+  const { isMenuOpen, setIsMenuOpen } = useHamburgerMenu();
 
   return (
     <nav className="bg-[#10203F] text-white md:w-[90%] w-full py-2 px-4 flex items-center justify-center sm:justify-between relative flex-wrap">
       {/* LOGO */}
       <div className="flex items-center gap-2">
         <Link href="/" className="flex flex-col items-center gap-2">
-          <Image src="/Logo1022.png" alt="Logo 1022" width={200} height={200} />
+          <Image
+            src="/Logo1022.png"
+            alt="Logo 1022"
+            width={150}
+            height={150}
+            className="w-24 sm:w-32 md:w-40 lg:w-48"
+            priority
+          />
           <div className="text-sm flex flex-col justify-center items-center">
             <p className="font-bold text-center">CỔNG THÔNG TIN DỊCH VỤ CÔNG ĐÀ NẴNG</p>
             <p>
@@ -52,15 +60,19 @@ const Navbar = () => {
           </div>
         </Link>
       </div>
-  
+
       {/* SEARCH BAR & MENU BUTTON */}
       <div className="relative flex items-center flex-wrap gap-4 sm:flex-nowrap pt-4 sm:pt-0">
         <p className="uppercase text-sm font-bold mr-2 text-[#00b3ff94] text-right hidden md:block">
           Search<br />Anything
         </p>
-        <div className="relative w-60 sm:w-64 ">
-          <input type="text" placeholder="Search..." className="input input-bordered rounded-full w-full pr-10 text-black " />
-          <button className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-500 ">
+        <div className="relative w-full max-w-xs sm:max-w-sm">
+          <input
+            type="click"
+            placeholder="Search..."
+            className="input input-bordered rounded-full w-full pr-10 text-black"
+          />
+          <button aria-label="Search" className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-500">
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>
@@ -68,6 +80,7 @@ const Navbar = () => {
           <FontAwesomeIcon icon={faUser} className="text-white text-2xl cursor-pointer" />
           {!hideHamburger && (
             <button
+              aria-label="Toggle menu"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="text-white text-2xl relative z-30 cursor-pointer"
             >
@@ -76,7 +89,7 @@ const Navbar = () => {
           )}
         </div>
       </div>
-  
+
       {/* HAMBURGER MENU */}
       {isMenuOpen && (
         <>
@@ -87,7 +100,7 @@ const Navbar = () => {
             exit={{ opacity: 0 }}
             className="fixed inset-0 bg-black z-10"
           ></motion.div>
-  
+
           {/* Menu chính */}
           <motion.div
             id="hamburger-menu"
@@ -112,7 +125,7 @@ const Navbar = () => {
       )}
     </nav>
   );
-  
+
 };
 
 export default Navbar;

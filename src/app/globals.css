@@ -4,19 +4,13 @@
 };
 
 .custom-outline-text {
-    font-size: 3rem;
-    font-weight: bold;
-    color: transparent;
-    -webkit-text-stroke: 1px #003294;
-  }
-  @media (max-width: 640px) { /* Giả sử sm là 640px */
-    .custom-outline-text {
-        font-size: 2rem; /* Kích thước chữ cho màn hình nhỏ */
-    }
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-transparent;
+  -webkit-text-stroke: 1px #003294;
 }
 .custom-outline-text-InfoUneed {
-  font-size: 2.5rem;
-  font-weight: bold;
-  color: transparent;
+  @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-transparent;
   -webkit-text-stroke: 1px white;
+}
+.transition-all {
+  transition: all 0.3s ease-in-out;
 }

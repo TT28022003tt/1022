@@ -18,23 +18,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-theme="light">
-      <body
-        className=""
-      >
-        <div className="">
-          <div className="flex flex-col justify-center items-center w-screen bg-[#10203F]">
+      <body className="min-h-screen flex flex-col">
+        <div className="flex-1">
+          <div className="flex flex-col justify-center items-center w-full bg-[#10203F]">
             <Navbar />
-            <Dynamic/>
-            <Carousel/>
+            <Dynamic />
+            <Carousel />
           </div>
-          <div className="flex flex-col justify-center items-center">
+          <main className="flex flex-col justify-center items-center">
             {children}
-          </div>
-          <div className="">
-            {/* Footer */}
-            <Footer/>
-          </div>
+          </main>
         </div>
+        <Footer />
       </body>
     </html>
   );
