@@ -31,7 +31,7 @@ const DynLink = () => {
             className={`w-8 sm:w-10 md:w-12 object-contain absolute left-3 sm:left-4 transition-opacity duration-300`}
           />
           <span
-            className={`text-xs sm:text-sm font-semibold absolute left-12 sm:left-16 md:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
+            className={`text-xs sm:text-sm font-semibold absolute left-12 pl-2 sm:left-16 md:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
               expanded === index ? "opacity-100" : ""
             }`}
           >
