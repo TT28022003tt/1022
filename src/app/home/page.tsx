@@ -9,7 +9,7 @@ const Page1022 = () => {
 	return (
 		<div className="flex flex-col justify-center items-center ">
 			<div className="z-10 hidden md:block">
-				<SloganSection />
+				{/* <SloganSection /> */}
 			</div>
 			<div className="z-20">
 				<Carouselmini />
