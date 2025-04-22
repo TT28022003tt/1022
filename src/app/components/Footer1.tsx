@@ -9,7 +9,7 @@ const Footer1 = () => (
   <div className="max-w-6xl mx-auto flex flex-col gap-4">
     {/* Tiêu đề */}
     <div className="pb-2 text-center">
-      <p className="font-bold uppercase text-xl sm:text-2xl lg:text-3xl custom-outline-text">
+      <p className="font-bold uppercase text-xl sm:text-2xl lg:text-3xl .custom-outline-text-Footer">
         Bản quyền thuộc Trung tâm Thông tin và Giám sát, Điều hành Thông minh Đà Nẵng
       </p>
     </div>
