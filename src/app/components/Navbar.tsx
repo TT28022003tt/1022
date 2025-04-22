@@ -41,13 +41,13 @@ const Navbar = () => {
   return (
     <nav className="bg-[#10203F] text-white md:w-[90%] w-full py-2 px-4 flex items-center justify-center sm:justify-between relative flex-wrap">
       {/* LOGO */}
-      <div className="flex items-center gap-2">
-        <Link href="/" className="flex flex-col items-center gap-2">
+      <div className="flex items-center gap-2 pt-6">
+        <Link href="/" className="flex flex-col items-center gap-4">
           <Image
             src="/Logo1022.png"
             alt="Logo 1022"
             width={150}
-            height={150}
+            height={80}
             className="w-24 sm:w-32 md:w-40 lg:w-48"
             priority
           />
@@ -62,13 +62,10 @@ const Navbar = () => {
       </div>
 
       {/* SEARCH BAR & MENU BUTTON */}
-      <div className="relative flex items-center flex-wrap gap-4 sm:flex-nowrap pt-4 sm:pt-0">
-        <p className="uppercase text-sm font-bold mr-2 text-[#00b3ff94] text-right hidden md:block">
-          Search<br />Anything
-        </p>
+      <div className="relative flex items-center justify-between gap-4 sm:flex-nowrap pt-4 sm:pt-0">
         <div className="relative w-full max-w-xs sm:max-w-sm">
           <input
-            type="click"
+            type="text"
             placeholder="Search..."
             className="input input-bordered rounded-full w-full pr-10 text-black"
           />
@@ -76,7 +73,7 @@ const Navbar = () => {
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
         </div>
-        <div className="flex items-center space-x-4 md:pl-4 sm:pr-4">
+        <div className="flex items-center space-x-4 md:pl-4 sm:pr-4 shrink-0">
           <FontAwesomeIcon icon={faUser} className="text-white text-2xl cursor-pointer" />
           {!hideHamburger && (
             <button
@@ -108,7 +105,7 @@ const Navbar = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -20, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute top-23 right-4 mt-2 w-64 bg-white text-black shadow-lg rounded-lg py-2 z-20"
+            className="absolute top-26 right-8 mt-2 w-64 bg-white text-black shadow-lg rounded-lg py-2 z-50"
           >
             {menuItems.map((item, index) => (
               <Link

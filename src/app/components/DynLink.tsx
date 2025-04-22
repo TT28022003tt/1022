@@ -15,9 +15,15 @@ const DynLink = () => {
           key={index}
           href={card.href}
           aria-label={`Visit ${card.name}`}
-          className={`group flex justify-center items-center shadow-md rounded-lg w-20 sm:w-48 md:w-60 lg:w-64 p-3 active:scale-95 transition-all duration-300 hover:w-64 relative ${
-            expanded === index ? "sm:w-72 md:w-80 z-50" : ""
-          }`}
+          className={`group 
+            flex justify-center items-center 
+            rounded-lg 
+            w-20 sm:w-48 md:w-60 lg:w-64 
+            p-3 
+            transition-transform duration-200 ease-in-out
+            hover:scale-[1.03] 
+            active:scale-95 
+            relative`}
           onMouseEnter={() => setExpanded(index)}
           onMouseLeave={() => setExpanded(null)}
           onClick={() => window.innerWidth < 640 && setExpanded(index)}
@@ -28,24 +34,13 @@ const DynLink = () => {
             alt={card.name}
             width={48}
             height={48}
-            className={`w-8 sm:w-10 md:w-12 object-contain absolute left-3 sm:left-4 transition-opacity duration-300`}
+            className={`w-8 sm:w-10 md:w-12 object-contain absolute left-6 sm:left-4 transition-opacity duration-300`}
           />
           <span
-            className={`text-xs sm:text-sm font-semibold absolute left-12 pl-2 sm:left-16 md:opacity-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-              expanded === index ? "opacity-100" : ""
-            }`}
+            className={`text-xs sm:text-sm font-semibold absolute left-12 pl-2 sm:left-16 md:opacity-100 opacity-0 `}
           >
             {card.name}
           </span>
-          {expanded === index && window.innerWidth < 640 && (
-            <button
-              onClick={() => setExpanded(null)}
-              className="absolute right-2 top-2 text-white text-xl"
-              aria-label="Close expanded card"
-            >
-              ✕
-            </button>
-          )}
         </Link>
       ))}
     </div>

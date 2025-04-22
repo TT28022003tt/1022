@@ -71,16 +71,11 @@ const Carousel = () => {
     }
   };
   return (
-    <div className="relative h-[450px] flex justify-center items-center gap-8 p-4 overflow-hidden w-full bg-[linear-gradient(to_bottom,#10203F_50%,white_50%)]"
+    <div className="relative h-[400px] flex justify-center items-center overflow-hidden w-full bg-[linear-gradient(to_bottom,#10203F_50%,white_50%)]"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
     >
-      {/* Social Media Icons */}
-      <div className="absolute top-3 right-4 md:right-1/4 flex md:flex-row gap-4 text-white text-2xl z-10">
-        <FontAwesomeIcon icon={faFacebook} className="cursor-pointer hover:text-blue-500" />
-        <FontAwesomeIcon icon={faInstagram} className="cursor-pointer hover:text-pink-500" />
-        <FontAwesomeIcon icon={faTwitter} className="cursor-pointer hover:text-blue-400" />
-      </div>
+
 
       {/* Navigation Buttons */}
       <button onClick={prevSlide} className="absolute left-4 text-5xl text-[#3498db] p-2 z-10 hidden sm:block ">

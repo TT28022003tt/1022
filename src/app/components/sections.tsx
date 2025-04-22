@@ -4,6 +4,7 @@
 import { faInfoCircle, faTasks, faServer, faBriefcase, faFileContract, faUsers, faPhone, faEnvelope, faGlobe, faComment } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export const sections = [
     {
@@ -430,20 +431,26 @@ export const sections = [
         title: "Khách hàng tiêu biểu",
         icon: faUsers,
         content: (
-            <div className="keen-slider">
-                {["UBND TP Đà Nẵng", "Sở TTTT", "Sở Kế hoạch & Đầu tư", "Doanh nghiệp A", "Tổ chức B"].map((client, index) => (
-                    <div key={index} className="keen-slider__slide">
-                        <motion.div
-                            whileHover={{ scale: 1.05 }}
-                            className="bg-white p-4 rounded-lg shadow-md text-center"
-                        >
-                            <p className="text-sm sm:text-base font-semibold text-[#003294]">{client}</p>
-                        </motion.div>
-                    </div>
-                ))}
-            </div>
+          <div className="keen-slider">
+            {Array.from({ length: 21 }, (_, index) => `/anh/anh${index + 1}.jpg`).map((image, index) => (
+              <div key={index} className="keen-slider__slide">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-white p-4 rounded-lg shadow-md flex items-center justify-center group"
+                >
+                  <Image
+                    src={image}
+                    alt={`Khách hàng ${index + 1}`}
+                    width={128}
+                    height={128}
+                    className="w-20 sm:w-24 lg:w-32 h-20 sm:h-24 lg:h-32 object-contain group-hover:border-2 group-hover:border-[#F472B6] rounded-md"
+                  />
+                </motion.div>
+              </div>
+            ))}
+          </div>
         ),
-    },
+      },
     {
         id: "channels",
         title: "Kênh giao tiếp",

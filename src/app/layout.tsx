@@ -4,6 +4,10 @@ import Navbar from "./components/Navbar";
 import Dynamic from "./components/Dynamic";
 import Carousel from "./components/Carousel";
 import Footer from "./components/Footer";
+import ChatWidget from "./components/ChatWidget";
+import SocialMediaIcons from "./components/SocialMediaIcons";
+import { ChatProvider } from "./ChatContext";
+import ScrollToTopButton from "./components/ScrollToTopbtn";
 
 
 export const metadata: Metadata = {
@@ -19,17 +23,22 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="light">
       <body className="min-h-screen flex flex-col">
-        <div className="flex-1">
-          <div className="flex flex-col justify-center items-center w-full bg-[#10203F]">
-            <Navbar />
-            <Dynamic />
-            <Carousel />
+        <ChatProvider>
+          <div className="flex-1">
+            <div className="flex flex-col justify-center items-center w-full bg-[#10203F]">
+              <Navbar />
+              <Dynamic />
+              <Carousel />
+            </div>
+            <main className="flex flex-col justify-center items-center">
+              {children}
+              <ChatWidget />
+              <SocialMediaIcons />
+              <ScrollToTopButton/>
+            </main>
           </div>
-          <main className="flex flex-col justify-center items-center">
-            {children}
-          </main>
-        </div>
-        <Footer />
+          <Footer />
+        </ChatProvider>
       </body>
     </html>
   );

@@ -1,9 +1,9 @@
 import AllSection from "../components/AllSection";
 import BannerHome from "../components/BannerHome";
+import BrandSlider from "../components/Brands";
 import Carouselmini from "../components/Carouselmini";
 import Extra from "../components/Extra";
 import InfoUneed from "../components/InfoUneed";
-import SloganSection from "../components/SloganSection";
 
 const Page1022 = () => {
 	return (
@@ -24,6 +24,10 @@ const Page1022 = () => {
 				<InfoUneed />
 				<BannerHome />
 				<Extra />
+				{/* <Brands/> */}
+			</div>
+			<div className="">
+				<BrandSlider/>
 			</div>
 		</div>
 

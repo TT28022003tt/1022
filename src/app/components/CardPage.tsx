@@ -1,8 +1,7 @@
-"use client";
+'use client';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/fontawesome-common-types";
-import Image from "next/legacy/image";
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 interface CardProps {
   icon: string;
@@ -11,10 +10,19 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ icon, title }) => {
   return (
-    <div className="bg-[#2257BF] flex justify-items-start md:justify-center items-center cursor-pointer rounded-2xl p-4 flex-1 min-w-[130px]">
-      <Image src={icon} alt="" width={40} height={40} className="text-xl mr-2"/>
-      <h1 className="text-lg text-white font-semibold my-4">{title}</h1>
-    </div>
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="bg-[#2257BF] flex justify-items-start md:justify-center items-center cursor-pointer rounded-2xl p-4 min-w-[130px] h-full group"
+    >
+      <Image
+        src={icon}
+        alt={title}
+        width={40}
+        height={40}
+        className="mr-2"
+      />
+      <h1 className="text-base sm:text-lg text-white font-semibold my-2 sm:my-4">{title}</h1>
+    </motion.div>
   );
 };
 

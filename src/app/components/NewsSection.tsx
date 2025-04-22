@@ -1,18 +1,44 @@
 "use client";
 
 import Image from "next/legacy/image";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { articles } from "../constants/articles";
+import { useEffect, useState } from "react";
 
 const NewsSection = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const articlesPerPage = typeof window !== "undefined" && window.innerWidth < 640 ? 4 : 8;
-  const totalPages = Math.ceil(articles.length / articlesPerPage);
+  const [articlesPerPage, setArticlesPerPage] = useState(8);
+  const [isClient, setIsClient] = useState(false);
 
+  useEffect(() => {
+    setIsClient(true);
+
+    const updateArticlesPerPage = () => {
+      const width = window.innerWidth;
+      let newArticlesPerPage = 8;
+      if (width < 640) newArticlesPerPage = 3;
+      else if (width < 1024) newArticlesPerPage = 6;
+
+      setArticlesPerPage((prev) => {
+        if (prev !== newArticlesPerPage) {
+          setCurrentPage(1); // chỉ reset page khi số lượng bài thay đổi
+        }
+        return newArticlesPerPage;
+      });
+    };
+
+    updateArticlesPerPage();
+    window.addEventListener("resize", updateArticlesPerPage);
+    return () => window.removeEventListener("resize", updateArticlesPerPage);
+  }, []);
+
+  if (!isClient) return null;
+
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+  const startIndex = (currentPage - 1) * articlesPerPage;
   const visibleArticles = articles.slice(
-    (currentPage - 1) * articlesPerPage,
-    currentPage * articlesPerPage
+    startIndex,
+    startIndex + articlesPerPage
   );
 
   const handlePageChange = (page: number) => {
@@ -73,8 +99,7 @@ const NewsSection = () => {
             <button
               key={num}
               onClick={() => handlePageChange(num)}
-              className={`w-6 h-6 flex items-center justify-center rounded ${num === currentPage ? "bg-blue-500 text-white" : "text-gray-500"
-                }`}
+              className={`w-6 h-6 flex items-center justify-center rounded ${num === currentPage ? "bg-blue-500 text-white" : "text-gray-500"}`}
             >
               {num}
             </button>
